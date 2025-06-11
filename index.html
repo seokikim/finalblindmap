@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blind Map</title>
+
+  <!-- Font Imports -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Helvetica Neue', 'Spoqa Han Sans Neo', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background-color: white;
+      height: 100vh;       /* ← 전체 화면 기준 맞추기 */
+  overflow: hidden;
+    }
+
+    header {
+      display: flex;
+      width: 100%;
+      border-bottom: 1.5px solid #000;
+      background-color: white;
+      position: fixed; justify-content: space-between;
+        height: 74px;
+          z-index: 1001; /* ⭐ 이 줄 추가 */
+
+
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    .click-area {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .bg-gif {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .title {
+      position: absolute;
+      left: 50%;
+      top: 85%;
+      transform: translate(-50%, -50%);
+      max-width: 80%;
+    }
+
+ .header-cell-1, .header-cell-2, .header-cell-3 {font-size: 18px; font-weight: 500; line-height: 1.0; display: flex; align-items: center; padding-top: 10px; padding-bottom: 10px;}
+    
+    .header-cell-1 {
+      padding-left: 17px; padding-right: 200px;
+    }
+
+    .header-cell-2 {
+      padding-left: 17px;
+      border-left: 1.5px solid #000;
+    }
+
+    .header-cell-3 {
+      padding-left: 28px;
+    }
+
+.header-right {
+  margin-left: auto; /* 우측 끝 정렬 */
+  display: flex;
+  flex-direction: column;
+  border-left: 1.5px solid #000;
+  width: 250px;
+}
+
+.right-top {
+  display: flex;
+  height: 37px;
+}
+
+.blind-map {
+  width: 100%;
+  height: 100%;
+  background-color: #2828FF;
+  background-image: url('smalllogo.png');
+  background-repeat: no-repeat;
+   background-position: left 18px center; /* ← 좌측에서 18px 띄움 */
+  background-origin: content-box;       /* ← 패딩 기준으로 배경 위치 조정 */ 
+  background-size: 48%;
+}
+
+.right-bottom {
+  display: flex;
+  height: 37px;
+}
+
+.nav-link {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: underline;
+  color: #0000EE;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;  /* ✅ 가운데 정렬 제거 */
+  padding-left: 18px;           /* ✅ 좌측 패딩 적용 */
+  border-right: 1.5px solid #000;
+   position: relative;
+  z-index: 1000;
+}
+
+.nav-link:last-child {
+  border-right: none;
+    justify-content: flex-start;
+  padding-left: 18px;
+}
+
+/* 바디 배경 */
+.main-visual {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding-top: 74px;   /* ✅ 메뉴바 공간 확보 */
+  overflow: hidden;
+}
+
+.bg-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title-absolute {
+  position: absolute;
+  left: 43.5%;
+  top: calc(83%); /* 메뉴바 높이 74px의 절반 */
+  transform: translate(-50%, -50%);
+  max-width: 80%;
+  height: auto;
+}
+
+.sound-icon {
+  height: 25px;             /* 메뉴 폰트와 맞춤 */       /* header-cell-1 바로 옆 여백 */
+  cursor: pointer;
+  align-self: center;
+  margin-left: 1223px;      /* 👉 우측으로 이동 */
+  margin-top: 35px;
+  position: absolute;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-cell-1">Maps are<br>not neutral<br>to us</div>
+
+
+    <div class="header-cell-2">Where are<br>the hidden places,<br>what do we not see</div>
+    <div class="header-cell-3">Re-complete<br>6 places in<br>South Korea</div>
+    <img src="soundon.png" class="sound-icon" onclick="toggleMusic()" />
+
+
+    <div class="header-right">
+  <div class="right-top">
+    <div class="blind-map"></div>
+  </div>
+  <div class="right-bottom">
+    <a href="intro.html" class="nav-link">Intro</a>
+    <a href="places.html" class="nav-link">6 places</a>
+  </div>
+</div>
+  </header>
+
+  <main class="main-visual">
+  	<a href="intro.html">
+  <img src="landing.gif" alt="background" class="bg-gif">
+  <img src="biglogo.png" alt="Blind map title" class="title-absolute">
+</a>
+
+</main>
+<div class="click-area" onclick="startAndGo()">
+  <img src="landing.gif" class="bg-gif" />
+  <img src="biglogo.png" class="title" />
+</div>
+
+
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg" />
+</audio>
+
+<script>
+  const audio = document.getElementById("bgm");
+  const soundIcon = document.querySelector(".sound-icon");
+  let isPlaying = false;
+
+  function toggleMusic() {
+    if (isPlaying) {
+      audio.pause();
+      soundIcon.src = "soundon.png"; // 정지 상태 이미지
+    } else {
+      audio.muted = false;
+      audio.play().catch(err => {
+        console.warn("재생 실패:", err);
+      });
+      soundIcon.src = "soundoff.png"; // 재생 중 이미지
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
+
+</body>
+</html>
